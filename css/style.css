@@ -209,4 +209,24 @@ footer {
     .hero h1 {
         font-size: 1.8rem;
     }
+}
+
+/* 日曆圖片樣式 */
+.calendar-image {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.featured-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 在較大螢幕上限制圖片最大寬度 */
+@media (min-width: 768px) {
+    .featured-image {
+        max-width: 80%;
+    }
 } 

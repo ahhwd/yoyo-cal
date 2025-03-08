@@ -145,53 +145,8 @@ main {
 footer {
     background-color: #333;
     color: #fff;
-    padding: 3rem 0 1rem;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-category {
-    padding: 0 1rem;
-}
-
-.footer-category h4 {
-    color: #fff;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.footer-links {
-    list-style: none;
-}
-
-.footer-links li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-links a {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: #fff;
-}
-
-.footer-bottom {
+    padding: 1rem 0;
     text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.7);
-    font-size: 0.9rem;
 }
 
 /* 移動端菜單按鈕 */
@@ -226,25 +181,6 @@ footer {
     .logo-text {
         font-size: 1rem;
     }
-
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    .footer-category {
-        padding: 0 0.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-
-    footer {
-        padding: 2rem 0 1rem;
-    }
 }
 
 /* iPhone 16 Pro 和 16 Pro Max 適配 */
@@ -272,87 +208,5 @@ footer {
 
     .hero h1 {
         font-size: 1.8rem;
-    }
-}
-
-/* 服務總覽樣式 */
-.services-overview {
-    padding: 2rem 0;
-}
-
-.services-overview h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    color: #333;
-}
-
-.category-blocks {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 0 1rem;
-}
-
-.category-block {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 1.5rem;
-    transition: transform 0.3s ease;
-}
-
-.category-block:hover {
-    transform: translateY(-5px);
-}
-
-.category-block h3 {
-    color: #007bff;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #f0f0f0;
-}
-
-.service-list {
-    list-style: none;
-}
-
-.service-item {
-    margin-bottom: 1.2rem;
-}
-
-.service-item:last-child {
-    margin-bottom: 0;
-}
-
-.service-title {
-    display: block;
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    text-decoration: none;
-}
-
-.service-title:hover {
-    color: #007bff;
-}
-
-.service-description {
-    color: #666;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-/* 響應式設計調整 */
-@media (max-width: 768px) {
-    .category-blocks {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .services-overview h2 {
-        font-size: 1.8rem;
-        margin-bottom: 2rem;
     }
 } 

@@ -5,6 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台灣日出日落表 - yoyo 日曆</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .sun-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .selection-area {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .select-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .select-group label {
+            font-weight: bold;
+            color: #333;
+        }
+        select {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            min-width: 150px;
+            background-color: white;
+        }
+        .sun-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .sun-table th, .sun-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        .sun-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+            color: #333;
+        }
+        .sun-table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        .current-day {
+            background-color: #e3f2fd !important;
+            font-weight: bold;
+        }
+        .sun-info {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            color: #333;
+        }
+        .sun-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .sun-info strong {
+            color: #1976d2;
+        }
+        .today-sun-info {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .today-sun-info h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        .today-sun-times {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 15px;
+        }
+        .sun-time-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .sun-time-item .label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .sun-time-item .time {
+            color: #1976d2;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .selection-area {
+                flex-direction: column;
+                align-items: center;
+            }
+            .select-group {
+                width: 100%;
+                max-width: 300px;
+            }
+            .sun-table th, .sun-table td {
+                padding: 8px;
+                font-size: 14px;
+            }
+            .today-sun-times {
+                gap: 20px;
+            }
+            .sun-time-item .time {
+                font-size: 1.5em;
+            }
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -69,8 +193,63 @@
     <main>
         <div class="container">
             <h1>台灣日出日落表</h1>
-            <div class="page-content">
-                <p>功能開發中...</p>
+            <div class="sun-content">
+                <div class="selection-area">
+                    <div class="select-group">
+                        <label for="city">選擇城市</label>
+                        <select id="city">
+                            <option value="taipei" selected>台北市</option>
+                        </select>
+                    </div>
+                    <div class="select-group">
+                        <label for="month">選擇月份</label>
+                        <select id="month">
+                            <option value="1">1月</option>
+                            <option value="2">2月</option>
+                            <option value="3">3月</option>
+                            <option value="4">4月</option>
+                            <option value="5">5月</option>
+                            <option value="6">6月</option>
+                            <option value="7">7月</option>
+                            <option value="8">8月</option>
+                            <option value="9">9月</option>
+                            <option value="10">10月</option>
+                            <option value="11">11月</option>
+                            <option value="12">12月</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="today-sun-info">
+                    <h2>今日日出日落時間</h2>
+                    <div class="today-sun-times">
+                        <div class="sun-time-item">
+                            <span class="label">日出時間</span>
+                            <span class="time" id="todaySunrise">--:--</span>
+                        </div>
+                        <div class="sun-time-item">
+                            <span class="label">日落時間</span>
+                            <span class="time" id="todaySunset">--:--</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sun-info">
+                    <p>目前顯示：<strong id="currentCity">台北市</strong> <strong id="currentMonth">1</strong>月份的日出日落時間</p>
+                </div>
+                <table class="sun-table">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>日出時間</th>
+                            <th>日落時間</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sunData">
+                        <!-- 日出日落資料將由 JavaScript 動態填充 -->
+                    </tbody>
+                </table>
+                <div class="data-source" style="text-align: right; color: #666; font-size: 0.9em; margin-top: 15px;">
+                    (資料來自交通部中央氣象署)
+                </div>
             </div>
         </div>
     </main>
@@ -145,5 +324,465 @@
     </footer>
 
     <script src="../../js/main.js"></script>
+    <script>
+        // 日出日落資料
+        const sunData = {
+            taipei: {
+                1: [
+                    { date: 1, sunrise: "06:39", sunset: "17:16" },
+                    { date: 2, sunrise: "06:39", sunset: "17:17" },
+                    { date: 3, sunrise: "06:40", sunset: "17:17" },
+                    { date: 4, sunrise: "06:40", sunset: "17:18" },
+                    { date: 5, sunrise: "06:40", sunset: "17:19" },
+                    { date: 6, sunrise: "06:40", sunset: "17:19" },
+                    { date: 7, sunrise: "06:40", sunset: "17:20" },
+                    { date: 8, sunrise: "06:41", sunset: "17:21" },
+                    { date: 9, sunrise: "06:41", sunset: "17:22" },
+                    { date: 10, sunrise: "06:41", sunset: "17:24" },
+                    { date: 11, sunrise: "06:41", sunset: "17:23" },
+                    { date: 12, sunrise: "06:41", sunset: "17:24" },
+                    { date: 13, sunrise: "06:41", sunset: "17:24" },
+                    { date: 14, sunrise: "06:41", sunset: "17:25" },
+                    { date: 15, sunrise: "06:41", sunset: "17:26" },
+                    { date: 16, sunrise: "06:41", sunset: "17:27" },
+                    { date: 17, sunrise: "06:41", sunset: "17:27" },
+                    { date: 18, sunrise: "06:41", sunset: "17:28" },
+                    { date: 19, sunrise: "06:40", sunset: "17:29" },
+                    { date: 20, sunrise: "06:40", sunset: "17:30" },
+                    { date: 21, sunrise: "06:40", sunset: "17:31" },
+                    { date: 22, sunrise: "06:40", sunset: "17:31" },
+                    { date: 23, sunrise: "06:40", sunset: "17:32" },
+                    { date: 24, sunrise: "06:39", sunset: "17:33" },
+                    { date: 25, sunrise: "06:39", sunset: "17:34" },
+                    { date: 26, sunrise: "06:39", sunset: "17:34" },
+                    { date: 27, sunrise: "06:39", sunset: "17:35" },
+                    { date: 28, sunrise: "06:38", sunset: "17:36" },
+                    { date: 29, sunrise: "06:38", sunset: "17:36" },
+                    { date: 30, sunrise: "06:37", sunset: "17:37" },
+                    { date: 31, sunrise: "06:37", sunset: "17:38" }
+                ],
+                2: [
+                    { date: 1, sunrise: "06:37", sunset: "17:39" },
+                    { date: 2, sunrise: "06:36", sunset: "17:39" },
+                    { date: 3, sunrise: "06:36", sunset: "17:40" },
+                    { date: 4, sunrise: "06:35", sunset: "17:41" },
+                    { date: 5, sunrise: "06:35", sunset: "17:41" },
+                    { date: 6, sunrise: "06:34", sunset: "17:42" },
+                    { date: 7, sunrise: "06:34", sunset: "17:43" },
+                    { date: 8, sunrise: "06:33", sunset: "17:43" },
+                    { date: 9, sunrise: "06:32", sunset: "17:44" },
+                    { date: 10, sunrise: "06:32", sunset: "17:45" },
+                    { date: 11, sunrise: "06:31", sunset: "17:45" },
+                    { date: 12, sunrise: "06:30", sunset: "17:46" },
+                    { date: 13, sunrise: "06:30", sunset: "17:47" },
+                    { date: 14, sunrise: "06:29", sunset: "17:47" },
+                    { date: 15, sunrise: "06:28", sunset: "17:48" },
+                    { date: 16, sunrise: "06:28", sunset: "17:49" },
+                    { date: 17, sunrise: "06:27", sunset: "17:49" },
+                    { date: 18, sunrise: "06:26", sunset: "17:50" },
+                    { date: 19, sunrise: "06:25", sunset: "17:50" },
+                    { date: 20, sunrise: "06:25", sunset: "17:51" },
+                    { date: 21, sunrise: "06:24", sunset: "17:52" },
+                    { date: 22, sunrise: "06:23", sunset: "17:52" },
+                    { date: 23, sunrise: "06:22", sunset: "17:53" },
+                    { date: 24, sunrise: "06:21", sunset: "17:53" },
+                    { date: 25, sunrise: "06:20", sunset: "17:54" },
+                    { date: 26, sunrise: "06:20", sunset: "17:54" },
+                    { date: 27, sunrise: "06:19", sunset: "17:55" },
+                    { date: 28, sunrise: "06:18", sunset: "17:55" }
+                ],
+                3: [
+                    { date: 1, sunrise: "06:17", sunset: "17:56" },
+                    { date: 2, sunrise: "06:16", sunset: "17:57" },
+                    { date: 3, sunrise: "06:15", sunset: "17:57" },
+                    { date: 4, sunrise: "06:14", sunset: "17:58" },
+                    { date: 5, sunrise: "06:13", sunset: "17:58" },
+                    { date: 6, sunrise: "06:12", sunset: "17:59" },
+                    { date: 7, sunrise: "06:11", sunset: "17:59" },
+                    { date: 8, sunrise: "06:10", sunset: "18:00" },
+                    { date: 9, sunrise: "06:09", sunset: "18:00" },
+                    { date: 10, sunrise: "06:08", sunset: "18:00" },
+                    { date: 11, sunrise: "06:07", sunset: "18:01" },
+                    { date: 12, sunrise: "06:06", sunset: "18:01" },
+                    { date: 13, sunrise: "06:05", sunset: "18:02" },
+                    { date: 14, sunrise: "06:04", sunset: "18:02" },
+                    { date: 15, sunrise: "06:03", sunset: "18:03" },
+                    { date: 16, sunrise: "06:02", sunset: "18:03" },
+                    { date: 17, sunrise: "06:01", sunset: "18:04" },
+                    { date: 18, sunrise: "06:00", sunset: "18:04" },
+                    { date: 19, sunrise: "05:59", sunset: "18:05" },
+                    { date: 20, sunrise: "05:58", sunset: "18:05" },
+                    { date: 21, sunrise: "05:57", sunset: "18:05" },
+                    { date: 22, sunrise: "05:56", sunset: "18:06" },
+                    { date: 23, sunrise: "05:55", sunset: "18:06" },
+                    { date: 24, sunrise: "05:54", sunset: "18:07" },
+                    { date: 25, sunrise: "05:53", sunset: "18:07" },
+                    { date: 26, sunrise: "05:52", sunset: "18:08" },
+                    { date: 27, sunrise: "05:51", sunset: "18:08" },
+                    { date: 28, sunrise: "05:50", sunset: "18:09" },
+                    { date: 29, sunrise: "05:49", sunset: "18:09" },
+                    { date: 30, sunrise: "05:48", sunset: "18:09" },
+                    { date: 31, sunrise: "05:47", sunset: "18:10" }
+                ],
+                4: [
+                    { date: 1, sunrise: "05:46", sunset: "18:10" },
+                    { date: 2, sunrise: "05:45", sunset: "18:11" },
+                    { date: 3, sunrise: "05:44", sunset: "18:11" },
+                    { date: 4, sunrise: "05:43", sunset: "18:12" },
+                    { date: 5, sunrise: "05:42", sunset: "18:12" },
+                    { date: 6, sunrise: "05:41", sunset: "18:12" },
+                    { date: 7, sunrise: "05:40", sunset: "18:13" },
+                    { date: 8, sunrise: "05:39", sunset: "18:13" },
+                    { date: 9, sunrise: "05:38", sunset: "18:14" },
+                    { date: 10, sunrise: "05:37", sunset: "18:14" },
+                    { date: 11, sunrise: "05:36", sunset: "18:15" },
+                    { date: 12, sunrise: "05:35", sunset: "18:15" },
+                    { date: 13, sunrise: "05:34", sunset: "18:16" },
+                    { date: 14, sunrise: "05:33", sunset: "18:16" },
+                    { date: 15, sunrise: "05:32", sunset: "18:16" },
+                    { date: 16, sunrise: "05:31", sunset: "18:17" },
+                    { date: 17, sunrise: "05:30", sunset: "18:17" },
+                    { date: 18, sunrise: "05:29", sunset: "18:18" },
+                    { date: 19, sunrise: "05:28", sunset: "18:18" },
+                    { date: 20, sunrise: "05:27", sunset: "18:19" },
+                    { date: 21, sunrise: "05:26", sunset: "18:19" },
+                    { date: 22, sunrise: "05:26", sunset: "18:20" },
+                    { date: 23, sunrise: "05:25", sunset: "18:20" },
+                    { date: 24, sunrise: "05:24", sunset: "18:21" },
+                    { date: 25, sunrise: "05:23", sunset: "18:21" },
+                    { date: 26, sunrise: "05:22", sunset: "18:22" },
+                    { date: 27, sunrise: "05:21", sunset: "18:22" },
+                    { date: 28, sunrise: "05:21", sunset: "18:23" },
+                    { date: 29, sunrise: "05:20", sunset: "18:23" },
+                    { date: 30, sunrise: "05:19", sunset: "18:24" }
+                ],
+                5: [
+                    { date: 1, sunrise: "05:18", sunset: "18:24" },
+                    { date: 2, sunrise: "05:18", sunset: "18:25" },
+                    { date: 3, sunrise: "05:17", sunset: "18:25" },
+                    { date: 4, sunrise: "05:16", sunset: "18:26" },
+                    { date: 5, sunrise: "05:16", sunset: "18:26" },
+                    { date: 6, sunrise: "05:15", sunset: "18:27" },
+                    { date: 7, sunrise: "05:14", sunset: "18:27" },
+                    { date: 8, sunrise: "05:14", sunset: "18:28" },
+                    { date: 9, sunrise: "05:13", sunset: "18:28" },
+                    { date: 10, sunrise: "05:12", sunset: "18:29" },
+                    { date: 11, sunrise: "05:12", sunset: "18:29" },
+                    { date: 12, sunrise: "05:11", sunset: "18:30" },
+                    { date: 13, sunrise: "05:11", sunset: "18:30" },
+                    { date: 14, sunrise: "05:10", sunset: "18:31" },
+                    { date: 15, sunrise: "05:10", sunset: "18:31" },
+                    { date: 16, sunrise: "05:09", sunset: "18:32" },
+                    { date: 17, sunrise: "05:09", sunset: "18:32" },
+                    { date: 18, sunrise: "05:08", sunset: "18:33" },
+                    { date: 19, sunrise: "05:08", sunset: "18:33" },
+                    { date: 20, sunrise: "05:07", sunset: "18:34" },
+                    { date: 21, sunrise: "05:07", sunset: "18:34" },
+                    { date: 22, sunrise: "05:07", sunset: "18:35" },
+                    { date: 23, sunrise: "05:06", sunset: "18:35" },
+                    { date: 24, sunrise: "05:06", sunset: "18:36" },
+                    { date: 25, sunrise: "05:06", sunset: "18:36" },
+                    { date: 26, sunrise: "05:05", sunset: "18:37" },
+                    { date: 27, sunrise: "05:05", sunset: "18:37" },
+                    { date: 28, sunrise: "05:05", sunset: "18:38" },
+                    { date: 29, sunrise: "05:05", sunset: "18:38" },
+                    { date: 30, sunrise: "05:04", sunset: "18:39" },
+                    { date: 31, sunrise: "05:04", sunset: "18:39" }
+                ],
+                6: [
+                    { date: 1, sunrise: "05:04", sunset: "18:40" },
+                    { date: 2, sunrise: "05:04", sunset: "18:40" },
+                    { date: 3, sunrise: "05:04", sunset: "18:41" },
+                    { date: 4, sunrise: "05:04", sunset: "18:41" },
+                    { date: 5, sunrise: "05:04", sunset: "18:41" },
+                    { date: 6, sunrise: "05:04", sunset: "18:42" },
+                    { date: 7, sunrise: "05:04", sunset: "18:42" },
+                    { date: 8, sunrise: "05:04", sunset: "18:43" },
+                    { date: 9, sunrise: "05:04", sunset: "18:43" },
+                    { date: 10, sunrise: "05:04", sunset: "18:43" },
+                    { date: 11, sunrise: "05:04", sunset: "18:44" },
+                    { date: 12, sunrise: "05:04", sunset: "18:44" },
+                    { date: 13, sunrise: "05:04", sunset: "18:44" },
+                    { date: 14, sunrise: "05:04", sunset: "18:45" },
+                    { date: 15, sunrise: "05:04", sunset: "18:45" },
+                    { date: 16, sunrise: "05:04", sunset: "18:45" },
+                    { date: 17, sunrise: "05:04", sunset: "18:46" },
+                    { date: 18, sunrise: "05:04", sunset: "18:46" },
+                    { date: 19, sunrise: "05:04", sunset: "18:46" },
+                    { date: 20, sunrise: "05:05", sunset: "18:46" },
+                    { date: 21, sunrise: "05:05", sunset: "18:47" },
+                    { date: 22, sunrise: "05:05", sunset: "18:47" },
+                    { date: 23, sunrise: "05:05", sunset: "18:47" },
+                    { date: 24, sunrise: "05:06", sunset: "18:47" },
+                    { date: 25, sunrise: "05:06", sunset: "18:47" },
+                    { date: 26, sunrise: "05:06", sunset: "18:47" },
+                    { date: 27, sunrise: "05:06", sunset: "18:48" },
+                    { date: 28, sunrise: "05:07", sunset: "18:48" },
+                    { date: 29, sunrise: "05:07", sunset: "18:48" },
+                    { date: 30, sunrise: "05:07", sunset: "18:48" }
+                ],
+                7: [
+                    { date: 1, sunrise: "05:08", sunset: "18:48" },
+                    { date: 2, sunrise: "05:08", sunset: "18:48" },
+                    { date: 3, sunrise: "05:08", sunset: "18:48" },
+                    { date: 4, sunrise: "05:09", sunset: "18:48" },
+                    { date: 5, sunrise: "05:09", sunset: "18:48" },
+                    { date: 6, sunrise: "05:10", sunset: "18:48" },
+                    { date: 7, sunrise: "05:10", sunset: "18:48" },
+                    { date: 8, sunrise: "05:10", sunset: "18:48" },
+                    { date: 9, sunrise: "05:11", sunset: "18:47" },
+                    { date: 10, sunrise: "05:11", sunset: "18:47" },
+                    { date: 11, sunrise: "05:12", sunset: "18:47" },
+                    { date: 12, sunrise: "05:12", sunset: "18:47" },
+                    { date: 13, sunrise: "05:13", sunset: "18:47" },
+                    { date: 14, sunrise: "05:13", sunset: "18:47" },
+                    { date: 15, sunrise: "05:13", sunset: "18:46" },
+                    { date: 16, sunrise: "05:14", sunset: "18:46" },
+                    { date: 17, sunrise: "05:14", sunset: "18:46" },
+                    { date: 18, sunrise: "05:15", sunset: "18:45" },
+                    { date: 19, sunrise: "05:15", sunset: "18:45" },
+                    { date: 20, sunrise: "05:16", sunset: "18:45" },
+                    { date: 21, sunrise: "05:16", sunset: "18:44" },
+                    { date: 22, sunrise: "05:17", sunset: "18:44" },
+                    { date: 23, sunrise: "05:17", sunset: "18:44" },
+                    { date: 24, sunrise: "05:18", sunset: "18:43" },
+                    { date: 25, sunrise: "05:18", sunset: "18:43" },
+                    { date: 26, sunrise: "05:19", sunset: "18:42" },
+                    { date: 27, sunrise: "05:19", sunset: "18:42" },
+                    { date: 28, sunrise: "05:20", sunset: "18:41" },
+                    { date: 29, sunrise: "05:20", sunset: "18:41" },
+                    { date: 30, sunrise: "05:21", sunset: "18:40" },
+                    { date: 31, sunrise: "05:21", sunset: "18:39" }
+                ],
+                8: [
+                    { date: 1, sunrise: "05:21", sunset: "18:39" },
+                    { date: 2, sunrise: "05:22", sunset: "18:38" },
+                    { date: 3, sunrise: "05:22", sunset: "18:38" },
+                    { date: 4, sunrise: "05:23", sunset: "18:37" },
+                    { date: 5, sunrise: "05:23", sunset: "18:36" },
+                    { date: 6, sunrise: "05:24", sunset: "18:36" },
+                    { date: 7, sunrise: "05:24", sunset: "18:35" },
+                    { date: 8, sunrise: "05:25", sunset: "18:34" },
+                    { date: 9, sunrise: "05:25", sunset: "18:33" },
+                    { date: 10, sunrise: "05:26", sunset: "18:33" },
+                    { date: 11, sunrise: "05:26", sunset: "18:32" },
+                    { date: 12, sunrise: "05:27", sunset: "18:31" },
+                    { date: 13, sunrise: "05:27", sunset: "18:30" },
+                    { date: 14, sunrise: "05:27", sunset: "18:30" },
+                    { date: 15, sunrise: "05:28", sunset: "18:29" },
+                    { date: 16, sunrise: "05:28", sunset: "18:28" },
+                    { date: 17, sunrise: "05:29", sunset: "18:27" },
+                    { date: 18, sunrise: "05:29", sunset: "18:26" },
+                    { date: 19, sunrise: "05:30", sunset: "18:25" },
+                    { date: 20, sunrise: "05:30", sunset: "18:24" },
+                    { date: 21, sunrise: "05:30", sunset: "18:24" },
+                    { date: 22, sunrise: "05:31", sunset: "18:23" },
+                    { date: 23, sunrise: "05:31", sunset: "18:22" },
+                    { date: 24, sunrise: "05:32", sunset: "18:21" },
+                    { date: 25, sunrise: "05:32", sunset: "18:20" },
+                    { date: 26, sunrise: "05:32", sunset: "18:19" },
+                    { date: 27, sunrise: "05:33", sunset: "18:18" },
+                    { date: 28, sunrise: "05:33", sunset: "18:17" },
+                    { date: 29, sunrise: "05:34", sunset: "18:16" },
+                    { date: 30, sunrise: "05:34", sunset: "18:15" },
+                    { date: 31, sunrise: "05:34", sunset: "18:14" }
+                ],
+                9: [
+                    { date: 1, sunrise: "05:35", sunset: "18:13" },
+                    { date: 2, sunrise: "05:35", sunset: "18:12" },
+                    { date: 3, sunrise: "05:36", sunset: "18:11" },
+                    { date: 4, sunrise: "05:36", sunset: "18:10" },
+                    { date: 5, sunrise: "05:36", sunset: "18:09" },
+                    { date: 6, sunrise: "05:37", sunset: "18:08" },
+                    { date: 7, sunrise: "05:37", sunset: "18:07" },
+                    { date: 8, sunrise: "05:38", sunset: "18:06" },
+                    { date: 9, sunrise: "05:38", sunset: "18:05" },
+                    { date: 10, sunrise: "05:38", sunset: "18:04" },
+                    { date: 11, sunrise: "05:39", sunset: "18:03" },
+                    { date: 12, sunrise: "05:39", sunset: "18:02" },
+                    { date: 13, sunrise: "05:40", sunset: "18:01" },
+                    { date: 14, sunrise: "05:40", sunset: "18:00" },
+                    { date: 15, sunrise: "05:40", sunset: "17:59" },
+                    { date: 16, sunrise: "05:41", sunset: "17:58" },
+                    { date: 17, sunrise: "05:41", sunset: "17:57" },
+                    { date: 18, sunrise: "05:42", sunset: "17:56" },
+                    { date: 19, sunrise: "05:42", sunset: "17:55" },
+                    { date: 20, sunrise: "05:43", sunset: "17:54" },
+                    { date: 21, sunrise: "05:43", sunset: "17:53" },
+                    { date: 22, sunrise: "05:43", sunset: "17:52" },
+                    { date: 23, sunrise: "05:44", sunset: "17:51" },
+                    { date: 24, sunrise: "05:44", sunset: "17:50" },
+                    { date: 25, sunrise: "05:45", sunset: "17:49" },
+                    { date: 26, sunrise: "05:45", sunset: "17:48" },
+                    { date: 27, sunrise: "05:46", sunset: "17:47" },
+                    { date: 28, sunrise: "05:46", sunset: "17:46" },
+                    { date: 29, sunrise: "05:46", sunset: "17:45" },
+                    { date: 30, sunrise: "05:47", sunset: "17:44" }
+                ],
+                10: [
+                    { date: 1, sunrise: "05:47", sunset: "17:43" },
+                    { date: 2, sunrise: "05:48", sunset: "17:42" },
+                    { date: 3, sunrise: "05:48", sunset: "17:41" },
+                    { date: 4, sunrise: "05:49", sunset: "17:40" },
+                    { date: 5, sunrise: "05:49", sunset: "17:39" },
+                    { date: 6, sunrise: "05:50", sunset: "17:38" },
+                    { date: 7, sunrise: "05:50", sunset: "17:37" },
+                    { date: 8, sunrise: "05:51", sunset: "17:36" },
+                    { date: 9, sunrise: "05:51", sunset: "17:35" },
+                    { date: 10, sunrise: "05:52", sunset: "17:34" },
+                    { date: 11, sunrise: "05:52", sunset: "17:33" },
+                    { date: 12, sunrise: "05:53", sunset: "17:32" },
+                    { date: 13, sunrise: "05:53", sunset: "17:31" },
+                    { date: 14, sunrise: "05:54", sunset: "17:30" },
+                    { date: 15, sunrise: "05:54", sunset: "17:29" },
+                    { date: 16, sunrise: "05:55", sunset: "17:28" },
+                    { date: 17, sunrise: "05:55", sunset: "17:27" },
+                    { date: 18, sunrise: "05:56", sunset: "17:26" },
+                    { date: 19, sunrise: "05:56", sunset: "17:25" },
+                    { date: 20, sunrise: "05:57", sunset: "17:24" },
+                    { date: 21, sunrise: "05:58", sunset: "17:23" },
+                    { date: 22, sunrise: "05:58", sunset: "17:22" },
+                    { date: 23, sunrise: "05:59", sunset: "17:21" },
+                    { date: 24, sunrise: "05:59", sunset: "17:21" },
+                    { date: 25, sunrise: "06:00", sunset: "17:20" },
+                    { date: 26, sunrise: "06:01", sunset: "17:19" },
+                    { date: 27, sunrise: "06:01", sunset: "17:18" },
+                    { date: 28, sunrise: "06:02", sunset: "17:17" },
+                    { date: 29, sunrise: "06:02", sunset: "17:17" },
+                    { date: 30, sunrise: "06:03", sunset: "17:16" },
+                    { date: 31, sunrise: "06:04", sunset: "17:15" }
+                ],
+                11: [
+                    { date: 1, sunrise: "06:04", sunset: "17:14" },
+                    { date: 2, sunrise: "06:05", sunset: "17:14" },
+                    { date: 3, sunrise: "06:06", sunset: "17:13" },
+                    { date: 4, sunrise: "06:06", sunset: "17:12" },
+                    { date: 5, sunrise: "06:07", sunset: "17:12" },
+                    { date: 6, sunrise: "06:08", sunset: "17:11" },
+                    { date: 7, sunrise: "06:08", sunset: "17:10" },
+                    { date: 8, sunrise: "06:09", sunset: "17:10" },
+                    { date: 9, sunrise: "06:10", sunset: "17:09" },
+                    { date: 10, sunrise: "06:11", sunset: "17:09" },
+                    { date: 11, sunrise: "06:11", sunset: "17:08" },
+                    { date: 12, sunrise: "06:12", sunset: "17:08" },
+                    { date: 13, sunrise: "06:13", sunset: "17:07" },
+                    { date: 14, sunrise: "06:14", sunset: "17:07" },
+                    { date: 15, sunrise: "06:14", sunset: "17:06" },
+                    { date: 16, sunrise: "06:15", sunset: "17:06" },
+                    { date: 17, sunrise: "06:16", sunset: "17:06" },
+                    { date: 18, sunrise: "06:17", sunset: "17:05" },
+                    { date: 19, sunrise: "06:17", sunset: "17:05" },
+                    { date: 20, sunrise: "06:18", sunset: "17:05" },
+                    { date: 21, sunrise: "06:19", sunset: "17:04" },
+                    { date: 22, sunrise: "06:20", sunset: "17:04" },
+                    { date: 23, sunrise: "06:20", sunset: "17:04" },
+                    { date: 24, sunrise: "06:21", sunset: "17:04" },
+                    { date: 25, sunrise: "06:22", sunset: "17:03" },
+                    { date: 26, sunrise: "06:23", sunset: "17:03" },
+                    { date: 27, sunrise: "06:23", sunset: "17:03" },
+                    { date: 28, sunrise: "06:24", sunset: "17:03" },
+                    { date: 29, sunrise: "06:25", sunset: "17:03" },
+                    { date: 30, sunrise: "06:26", sunset: "17:03" }
+                ],
+                12: [
+                    { date: 1, sunrise: "06:26", sunset: "17:03" },
+                    { date: 2, sunrise: "06:27", sunset: "17:03" },
+                    { date: 3, sunrise: "06:28", sunset: "17:03" },
+                    { date: 4, sunrise: "06:28", sunset: "17:03" },
+                    { date: 5, sunrise: "06:29", sunset: "17:03" },
+                    { date: 6, sunrise: "06:30", sunset: "17:03" },
+                    { date: 7, sunrise: "06:31", sunset: "17:03" },
+                    { date: 8, sunrise: "06:31", sunset: "17:03" },
+                    { date: 9, sunrise: "06:32", sunset: "17:03" },
+                    { date: 10, sunrise: "06:33", sunset: "17:04" },
+                    { date: 11, sunrise: "06:33", sunset: "17:04" },
+                    { date: 12, sunrise: "06:34", sunset: "17:04" },
+                    { date: 13, sunrise: "06:35", sunset: "17:04" },
+                    { date: 14, sunrise: "06:35", sunset: "17:05" },
+                    { date: 15, sunrise: "06:36", sunset: "17:05" },
+                    { date: 16, sunrise: "06:36", sunset: "17:05" },
+                    { date: 17, sunrise: "06:37", sunset: "17:06" },
+                    { date: 18, sunrise: "06:37", sunset: "17:06" },
+                    { date: 19, sunrise: "06:38", sunset: "17:07" },
+                    { date: 20, sunrise: "06:38", sunset: "17:07" },
+                    { date: 21, sunrise: "06:39", sunset: "17:08" },
+                    { date: 22, sunrise: "06:39", sunset: "17:08" },
+                    { date: 23, sunrise: "06:40", sunset: "17:09" },
+                    { date: 24, sunrise: "06:40", sunset: "17:09" },
+                    { date: 25, sunrise: "06:40", sunset: "17:10" },
+                    { date: 26, sunrise: "06:41", sunset: "17:11" },
+                    { date: 27, sunrise: "06:41", sunset: "17:11" },
+                    { date: 28, sunrise: "06:41", sunset: "17:12" },
+                    { date: 29, sunrise: "06:42", sunset: "17:13" },
+                    { date: 30, sunrise: "06:42", sunset: "17:13" },
+                    { date: 31, sunrise: "06:42", sunset: "17:14" }
+                ]
+            }
+        };
+
+        // 當前日期
+        const today = new Date();
+        const currentMonth = today.getMonth() + 1;
+        const currentDate = today.getDate();
+
+        // 設定預設月份
+        document.getElementById('month').value = currentMonth;
+
+        // 更新表格資料的函數
+        function updateTable() {
+            const selectedCity = document.getElementById('city').value;
+            const selectedMonth = parseInt(document.getElementById('month').value);
+            const tbody = document.getElementById('sunData');
+            const cityDisplay = document.getElementById('currentCity');
+            const monthDisplay = document.getElementById('currentMonth');
+            const todaySunrise = document.getElementById('todaySunrise');
+            const todaySunset = document.getElementById('todaySunset');
+            
+            // 更新顯示資訊
+            cityDisplay.textContent = document.getElementById('city').options[document.getElementById('city').selectedIndex].text;
+            monthDisplay.textContent = selectedMonth;
+            
+            // 清空現有資料
+            tbody.innerHTML = '';
+
+            // 獲取選定城市和月份的資料
+            const monthData = sunData[selectedCity][selectedMonth];
+            if (!monthData) return;
+
+            // 更新今日日出日落時間
+            const todayData = monthData.find(day => day.date === currentDate && selectedMonth === currentMonth);
+            if (todayData) {
+                todaySunrise.textContent = todayData.sunrise;
+                todaySunset.textContent = todayData.sunset;
+            } else {
+                todaySunrise.textContent = '--:--';
+                todaySunset.textContent = '--:--';
+            }
+
+            // 填充表格資料
+            monthData.forEach(dayData => {
+                const row = document.createElement('tr');
+                
+                // 如果是當前日期，添加特殊樣式
+                if (selectedMonth === currentMonth && dayData.date === currentDate) {
+                    row.classList.add('current-day');
+                }
+
+                row.innerHTML = `
+                    <td>${dayData.date}日</td>
+                    <td>${dayData.sunrise}</td>
+                    <td>${dayData.sunset}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // 監聽選擇變更事件
+        document.getElementById('city').addEventListener('change', updateTable);
+        document.getElementById('month').addEventListener('change', updateTable);
+
+        // 初始化表格
+        updateTable();
+    </script>
 </body>
 </html>

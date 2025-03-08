@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>台灣行事曆 - yoyo 日曆</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .calendar-image {
+            max-width: 100%;
+            height: auto;
+            margin: 2rem 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+
+        .calendar-content {
+            text-align: center;
+        }
+
+        .page-title {
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -68,17 +85,79 @@
 
     <main>
         <div class="container">
-            <h1>台灣行事曆</h1>
+            <h1 class="page-title">台灣行事曆</h1>
             <div class="calendar-content">
-                <!-- 這裡將放置日曆內容 -->
-                <p>台灣行事曆功能開發中...</p>
+                <img src="../../images/calendar/2025-calendar.jpg" alt="2025年台灣行事曆" class="calendar-image">
             </div>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 yoyo 日曆. 保留所有權利。</p>
+            <div class="footer-content">
+                <!-- 行事曆 -->
+                <div class="footer-category">
+                    <h4>行事曆</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../pages/calendar/taiwan.html">台灣行事曆</a></li>
+                    </ul>
+                </div>
+
+                <!-- 農曆相關 -->
+                <div class="footer-category">
+                    <h4>農曆相關</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../pages/lunar/converter.html">國曆轉農曆</a></li>
+                        <li><a href="../../pages/lunar/lucky-hours.html">今日吉時查詢</a></li>
+                        <li><a href="../../pages/lunar/daily-fortune.html">每日宜忌解釋</a></li>
+                        <li><a href="../../pages/lunar/deity-birthday.html">神明生日查詢</a></li>
+                    </ul>
+                </div>
+
+                <!-- 星座運勢 -->
+                <div class="footer-category">
+                    <h4>星座運勢</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../pages/horoscope/daily.html">今日運勢</a></li>
+                        <li><a href="../../pages/horoscope/monthly.html">本月運勢</a></li>
+                        <li><a href="../../pages/horoscope/personality.html">星座性格</a></li>
+                    </ul>
+                </div>
+
+                <!-- 好日子 -->
+                <div class="footer-category">
+                    <h4>好日子</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../pages/lucky-days/car.html">交車好日子</a></li>
+                        <li><a href="../../pages/lucky-days/business.html">開市好日子</a></li>
+                        <li><a href="../../pages/lucky-days/house-moving.html">入宅(搬新家)好日子</a></li>
+                        <li><a href="../../pages/lucky-days/relocation.html">移徙(搬家)好日子</a></li>
+                        <li><a href="../../pages/lucky-days/contract.html">簽約好日子</a></li>
+                        <li><a href="../../pages/lucky-days/wedding.html">結婚好日子</a></li>
+                    </ul>
+                </div>
+
+                <!-- 天文相關 -->
+                <div class="footer-category">
+                    <h4>天文相關</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../pages/astronomy/tide.html">台灣潮汐表</a></li>
+                        <li><a href="../../pages/astronomy/sun.html">台灣日出日落表</a></li>
+                    </ul>
+                </div>
+
+                <!-- 其他 -->
+                <div class="footer-category">
+                    <h4>其他</h4>
+                    <ul class="footer-links">
+                        <li><a href="../../pages/other/articles.html">文章目錄</a></li>
+                        <li><a href="../../pages/other/contact.html">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 yoyo 日曆. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 

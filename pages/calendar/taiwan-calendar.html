@@ -21,6 +21,166 @@
         .page-title {
             margin-bottom: 2rem;
         }
+
+        .month-calendar {
+            margin: 2rem auto;
+            max-width: 600px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .month-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .holiday-tag {
+            font-size: 0.9rem;
+            background-color: #e6f3ff;
+            color: #0066cc;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 1rem;
+        }
+
+        .calendar-header {
+            font-weight: bold;
+            text-align: center;
+            padding: 8px;
+            background-color: #f5f5f5;
+        }
+
+        .calendar-day {
+            text-align: center;
+            padding: 8px;
+            position: relative;
+        }
+
+        .calendar-day.holiday {
+            background-color: #e6f3ff;
+            color: #0066cc;
+            border-radius: 4px;
+        }
+
+        .calendar-day.weekend {
+            color: #ff4444;
+        }
+
+        .holiday-note {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        .holiday-list {
+            margin-top: 1rem;
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+
+        .holiday-list h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .holiday-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .holiday-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .holiday-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #0066cc;
+        }
+
+        .long-holiday {
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .vacation-strategy {
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .vacation-strategy h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .strategy-item {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .strategy-item h3 {
+            color: #0066cc;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .strategy-item ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .strategy-item li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .strategy-item li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #0066cc;
+            margin-right: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -88,6 +248,918 @@
             <h1 class="page-title">台灣行事曆</h1>
             <div class="calendar-content">
                 <img src="../../images/calendar/2025-calendar.jpg" alt="2025年台灣行事曆" class="calendar-image">
+
+                <!-- 請假攻略區塊 -->
+                <div class="vacation-strategy">
+                    <h2>2025 請假攻略</h2>
+                    <div class="strategy-grid">
+                        <div class="strategy-item">
+                            <h3>2025農曆春節過年 請假攻略</h3>
+                            <ul>
+                                <li>請0天</li>
+                                <li>休9天（1/25-2/2）</li>
+                            </ul>
+                        </div>
+
+                        <div class="strategy-item">
+                            <h3>2025 228連假 請假攻略</h3>
+                            <ul>
+                                <li>請4天（請2/24-2/27）</li>
+                                <li>休9天（2/28-3/2）</li>
+                            </ul>
+                        </div>
+
+                        <div class="strategy-item">
+                            <h3>2025清明節 請假攻略</h3>
+                            <ul>
+                                <li>請3天（請3/31-4/2）</li>
+                                <li>休9天（4/3-4/6）</li>
+                            </ul>
+                        </div>
+
+                        <div class="strategy-item">
+                            <h3>2025勞動節 請假攻略</h3>
+                            <ul>
+                                <li>請1天（請5/2）</li>
+                                <li>休4天（5/1-5/4）</li>
+                            </ul>
+                        </div>
+
+                        <div class="strategy-item">
+                            <h3>2025端午節請假攻略</h3>
+                            <ul>
+                                <li>請4天（請5/26-5/29）</li>
+                                <li>休9天（5/30-6/1）</li>
+                            </ul>
+                        </div>
+
+                        <div class="strategy-item">
+                            <h3>2025中秋節請假攻略</h3>
+                            <ul>
+                                <li>請3天（請10/7-10/9）</li>
+                                <li>休9天（10/4-10/12）</li>
+                            </ul>
+                        </div>
+
+                        <div class="strategy-item">
+                            <h3>2025國慶、雙十節請假攻略</h3>
+                            <ul>
+                                <li>請3天（請10/7-10/9）</li>
+                                <li>休9天（10/4-10/12）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="month-calendar">
+                    <div class="month-title">
+                        1月行事曆
+                        <span class="holiday-tag">元旦1天 | 春節9天</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        
+                        <!-- 1月的日期 -->
+                        <div class="calendar-day holiday">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day weekend">4</div>
+                        
+                        <div class="calendar-day weekend">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day weekend">11</div>
+                        
+                        <div class="calendar-day weekend">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day weekend">18</div>
+                        
+                        <div class="calendar-day weekend">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day holiday weekend">25</div>
+                        
+                        <div class="calendar-day holiday weekend">26</div>
+                        <div class="calendar-day holiday">27</div>
+                        <div class="calendar-day holiday">28</div>
+                        <div class="calendar-day holiday">29</div>
+                        <div class="calendar-day holiday">30</div>
+                        <div class="calendar-day holiday">31</div>
+                        <div class="calendar-day holiday">1</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>1月1日（星期三）：元旦（中華民國開國紀念日）</li>
+                            <li class="long-holiday">1月25日至2月2日：農曆春節連續假期（9天）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        2月行事曆
+                        <span class="holiday-tag">228連假3天</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day holiday">26</div>
+                        <div class="calendar-day holiday">27</div>
+                        <div class="calendar-day holiday">28</div>
+                        <div class="calendar-day holiday">29</div>
+                        <div class="calendar-day holiday">30</div>
+                        <div class="calendar-day holiday">31</div>
+                        <div class="calendar-day holiday weekend">1</div>
+                        
+                        <!-- 2月的日期 -->
+                        <div class="calendar-day holiday weekend">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day weekend">8</div>
+                        
+                        <div class="calendar-day weekend">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day weekend">15</div>
+                        
+                        <div class="calendar-day weekend">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day weekend">22</div>
+                        
+                        <div class="calendar-day weekend">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day holiday">28</div>
+                        <div class="calendar-day holiday weekend">1</div>
+                        
+                        <div class="calendar-day holiday weekend">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day weekend">8</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>2月1日至2月2日：農曆春節假期（延續1月）</li>
+                            <li class="long-holiday">2月28日至3月2日（星期五至星期日）：228和平紀念日連假（3天）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        3月行事曆
+                        <span class="holiday-tag">無國定假日</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day holiday">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day holiday">28</div>
+                        <div class="calendar-day holiday weekend">1</div>
+                        
+                        <!-- 3月的日期 -->
+                        <div class="calendar-day holiday weekend">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day weekend">8</div>
+                        
+                        <div class="calendar-day weekend">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day weekend">15</div>
+                        
+                        <div class="calendar-day weekend">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day weekend">22</div>
+                        
+                        <div class="calendar-day weekend">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day weekend">29</div>
+                        
+                        <div class="calendar-day weekend">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day weekend">5</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>3月1日至3月2日：228和平紀念日連假（延續2月）</li>
+                            <li>本月無其他國定假日</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        4月行事曆
+                        <span class="holiday-tag">兒童節及清明節連假4天</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day weekend">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day holiday">3</div>
+                        <div class="calendar-day holiday">4</div>
+                        <div class="calendar-day holiday weekend">5</div>
+                        
+                        <!-- 4月的日期 -->
+                        <div class="calendar-day holiday weekend">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day weekend">12</div>
+                        
+                        <div class="calendar-day weekend">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day weekend">19</div>
+                        
+                        <div class="calendar-day weekend">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day weekend">26</div>
+                        
+                        <div class="calendar-day weekend">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day weekend">3</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li class="long-holiday">4月3日至4月6日（星期四至星期日）：兒童節及清明節連假（4天）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        5月行事曆
+                        <span class="holiday-tag">勞動節1天 | 端午節連假3天</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day holiday">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day weekend">3</div>
+                        
+                        <!-- 5月的日期 -->
+                        <div class="calendar-day weekend">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day weekend">10</div>
+                        
+                        <div class="calendar-day weekend">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day weekend">17</div>
+                        
+                        <div class="calendar-day weekend">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day weekend">24</div>
+                        
+                        <div class="calendar-day weekend">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day holiday">30</div>
+                        <div class="calendar-day holiday weekend">31</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>5月1日（星期四）：勞動節</li>
+                            <li class="long-holiday">5月30日至6月1日（星期五至星期日）：端午節連假（3天）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        6月行事曆
+                        <span class="holiday-tag">無國定假日</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day holiday">30</div>
+                        <div class="calendar-day holiday weekend">31</div>
+                        
+                        <!-- 6月的日期 -->
+                        <div class="calendar-day holiday weekend">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day weekend">7</div>
+                        
+                        <div class="calendar-day weekend">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day weekend">14</div>
+                        
+                        <div class="calendar-day weekend">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day weekend">21</div>
+                        
+                        <div class="calendar-day weekend">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day weekend">28</div>
+                        
+                        <div class="calendar-day weekend">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day weekend">5</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>6月1日：端午節連假（延續5月）</li>
+                            <li>本月無其他國定假日</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 7月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        7月行事曆
+                        <span class="holiday-tag">無國定假日</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day weekend">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day weekend">5</div>
+                        
+                        <!-- 7月的日期 -->
+                        <div class="calendar-day weekend">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day weekend">12</div>
+                        
+                        <div class="calendar-day weekend">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day weekend">19</div>
+                        
+                        <div class="calendar-day weekend">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day weekend">26</div>
+                        
+                        <div class="calendar-day weekend">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day weekend">2</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>本月無國定假日</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 8月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        8月行事曆
+                        <span class="holiday-tag">無國定假日</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day weekend">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day weekend">2</div>
+                        
+                        <!-- 8月的日期 -->
+                        <div class="calendar-day weekend">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day weekend">9</div>
+                        
+                        <div class="calendar-day weekend">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day weekend">16</div>
+                        
+                        <div class="calendar-day weekend">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day weekend">23</div>
+                        
+                        <div class="calendar-day weekend">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day weekend">30</div>
+                        
+                        <div class="calendar-day weekend">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day weekend">6</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>本月無國定假日</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 9月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        9月行事曆
+                        <span class="holiday-tag">無國定假日</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day weekend">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day weekend">6</div>
+                        
+                        <!-- 9月的日期 -->
+                        <div class="calendar-day weekend">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day weekend">13</div>
+                        
+                        <div class="calendar-day weekend">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day weekend">20</div>
+                        
+                        <div class="calendar-day weekend">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day weekend">27</div>
+                        
+                        <div class="calendar-day weekend">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day weekend">4</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>本月無國定假日</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 10月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        10月行事曆
+                        <span class="holiday-tag">中秋節連假3天 | 國慶日連假3天</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day weekend">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day holiday weekend">4</div>
+                        
+                        <!-- 10月的日期 -->
+                        <div class="calendar-day holiday weekend">5</div>
+                        <div class="calendar-day holiday">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day holiday">10</div>
+                        <div class="calendar-day holiday weekend">11</div>
+                        
+                        <div class="calendar-day holiday weekend">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day weekend">18</div>
+                        
+                        <div class="calendar-day weekend">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day weekend">25</div>
+                        
+                        <div class="calendar-day weekend">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day weekend">1</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li class="long-holiday">10月4日至10月6日（星期六至星期一）：中秋節連假（3天）</li>
+                            <li class="long-holiday">10月10日至10月12日（星期五至星期日）：國慶日連假（3天）</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 11月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        11月行事曆
+                        <span class="holiday-tag">無國定假日</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day weekend">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day weekend">1</div>
+                        
+                        <!-- 11月的日期 -->
+                        <div class="calendar-day weekend">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day">6</div>
+                        <div class="calendar-day">7</div>
+                        <div class="calendar-day weekend">8</div>
+                        
+                        <div class="calendar-day weekend">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day">13</div>
+                        <div class="calendar-day">14</div>
+                        <div class="calendar-day weekend">15</div>
+                        
+                        <div class="calendar-day weekend">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day">21</div>
+                        <div class="calendar-day weekend">22</div>
+                        
+                        <div class="calendar-day weekend">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day">27</div>
+                        <div class="calendar-day">28</div>
+                        <div class="calendar-day weekend">29</div>
+                        
+                        <div class="calendar-day weekend">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day weekend">6</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>本月無國定假日</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 12月月曆 -->
+                <div class="month-calendar">
+                    <div class="month-title">
+                        12月行事曆
+                        <span class="holiday-tag">無國定假日</span>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="calendar-header">日</div>
+                        <div class="calendar-header">一</div>
+                        <div class="calendar-header">二</div>
+                        <div class="calendar-header">三</div>
+                        <div class="calendar-header">四</div>
+                        <div class="calendar-header">五</div>
+                        <div class="calendar-header">六</div>
+                        
+                        <!-- 上個月的日期 -->
+                        <div class="calendar-day weekend">30</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day">3</div>
+                        <div class="calendar-day">4</div>
+                        <div class="calendar-day">5</div>
+                        <div class="calendar-day weekend">6</div>
+                        
+                        <!-- 12月的日期 -->
+                        <div class="calendar-day weekend">7</div>
+                        <div class="calendar-day">8</div>
+                        <div class="calendar-day">9</div>
+                        <div class="calendar-day">10</div>
+                        <div class="calendar-day">11</div>
+                        <div class="calendar-day">12</div>
+                        <div class="calendar-day weekend">13</div>
+                        
+                        <div class="calendar-day weekend">14</div>
+                        <div class="calendar-day">15</div>
+                        <div class="calendar-day">16</div>
+                        <div class="calendar-day">17</div>
+                        <div class="calendar-day">18</div>
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day weekend">20</div>
+                        
+                        <div class="calendar-day weekend">21</div>
+                        <div class="calendar-day">22</div>
+                        <div class="calendar-day">23</div>
+                        <div class="calendar-day">24</div>
+                        <div class="calendar-day">25</div>
+                        <div class="calendar-day">26</div>
+                        <div class="calendar-day weekend">27</div>
+                        
+                        <div class="calendar-day weekend">28</div>
+                        <div class="calendar-day">29</div>
+                        <div class="calendar-day">30</div>
+                        <div class="calendar-day">31</div>
+                        <div class="calendar-day">1</div>
+                        <div class="calendar-day">2</div>
+                        <div class="calendar-day weekend">3</div>
+                    </div>
+                    
+                    <div class="holiday-list">
+                        <h4>本月國定假日</h4>
+                        <ul>
+                            <li>本月無國定假日</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
